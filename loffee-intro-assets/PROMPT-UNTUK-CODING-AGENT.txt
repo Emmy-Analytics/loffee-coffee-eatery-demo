@@ -1,0 +1,49 @@
+INSTRUKSI UNTUK AI CODING ASSISTANT — TAMBAHKAN OPENING REVEAL KE PROJECT LOFFEE YANG SUDAH ADA
+
+Konteks:
+Saya sudah punya website Loffee Coffee & Eatery di project VS Code yang sedang dibuka. Jangan membuat project baru, jangan mengganti desain utama, dan jangan menimpa seluruh file index.html, style.css, atau script.js. Pertahankan integrasi Google Sheets + Google Apps Script, navigasi, filter menu, lokasi, footer, dan semua fitur yang sudah ada.
+
+Aset:
+Saya sudah menyalin folder `images/` dari ZIP ini ke root project website. Gunakan aset PNG berikut bila tersedia:
+- images/gimbap.png
+- images/tteokbokki.png
+- images/korean-chicken.png
+- images/iced-coffee.png
+- images/matcha.png
+- images/creamy-pasta.png
+- images/strawberry-drink.png
+- images/tiramisu.png
+- images/croffle.png
+- images/lemon-tea.png
+
+Tujuan:
+Tambahkan intro overlay premium saat halaman pertama dibuka:
+1. Background gelap espresso/forest-green yang elegan.
+2. Aset makanan berbentuk cutout PNG transparan, bukan kartu/kotak. Tempatkan 5–7 objek dengan posisi berbeda, ukuran berbeda, dan rotasi halus.
+3. Objek masuk dari atas/sisi dengan easing lembut, tidak jatuh keras, tidak bounce berlebihan, dan tidak saling menutupi logo secara acak.
+4. Logo teks “loffee.” muncul setelah makanan bergerak, dengan subtitle kecil “COFFEE & EATERY”.
+5. Overlay menutup dengan transisi halus (sekitar 900–1200 ms), seperti curtain/wipe ke halaman utama. Hindari flash putih, loncatan layout, atau fade yang mendadak.
+6. Tambahkan tombol “Skip intro” yang selalu bisa dipakai.
+7. Intro berjalan maksimal sekali per tab/session, menggunakan sessionStorage dengan try/catch. Jika storage tidak tersedia, fallback tetap aman.
+8. Hormati `prefers-reduced-motion: reduce`: lewati animasi atau tampilkan transisi minimal.
+9. Jangan menunda interaksi utama terlalu lama. Total intro sekitar 3–4 detik, dan skip langsung membuka website.
+10. Pastikan responsif di mobile dan desktop, tidak menghalangi halaman setelah selesai, dan tidak menyebabkan scroll lock permanen.
+11. Pastikan semua selector/ID unik dan tidak bertabrakan dengan kode yang sudah ada.
+12. Jangan mengubah URL API, skema data, fungsi pemuatan menu, atau filter Google Sheets.
+
+Cara kerja:
+- Pertama, periksa struktur HTML/CSS/JS yang sudah ada dan identifikasi tempat paling aman untuk menambahkan overlay.
+- Lalu lakukan perubahan minimal: tambahkan markup intro tepat setelah tag pembuka `<body>`, CSS baru di akhir stylesheet, dan fungsi JavaScript terisolasi di akhir file JS yang sudah dipakai (atau file baru jika project memang sudah memakai modular script).
+- Gunakan `addEventListener`, jangan menimpa `window.onload` atau handler yang sudah ada.
+- Gunakan nama kelas dengan prefix `loffee-intro-` untuk menghindari konflik.
+- Jangan hapus atau rewrite kode yang tidak terkait.
+- Cek path aset sesuai struktur folder yang benar.
+- Pastikan tidak ada error console dan fitur menu dari Apps Script tetap berjalan.
+- Setelah selesai, laporkan file apa yang diubah dan tunjukkan ringkasan perubahan.
+
+Desain gerakan:
+- Gunakan cubic-bezier yang lembut (mis. cubic-bezier(.22,1,.36,1)).
+- Gerak objek menggunakan transform translate/rotate/scale, dengan durasi berbeda tipis.
+- Logo reveal dengan opacity + translateY kecil, bukan zoom besar.
+- Curtain reveal bergerak ke atas/menyamping dengan timing natural.
+- Hindari partikel terlalu banyak, glow berlebihan, font gimmick, emoji sebagai pengganti foto, dan kartu kotak.

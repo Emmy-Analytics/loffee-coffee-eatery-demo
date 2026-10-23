@@ -1,0 +1,10 @@
+
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+Thumbs.db
+qa-*.mjs
+Digital New Menu Loffee*.pdf
+loffee_tebet_menu_database*.xlsx
