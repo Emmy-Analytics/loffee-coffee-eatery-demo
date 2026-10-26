@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review pelanggan Loffee Coffee & Eatery — cerita dan pengalaman dari para pengunjung.">
+  <meta name="theme-color" content="#850000">
+  <title>Review Pelanggan — Loffee Coffee &amp; Eatery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="reviews-page">
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="Loffee beranda">Loffee<span>.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Buka navigasi">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Beranda</a><a href="index.html#menu">Menu</a><a href="index.html#story">Tentang</a><a href="reviews.html" class="active">Review</a><a href="index.html#visit">Kunjungi</a>
+    </nav>
+    <a class="header-cta" href="index.html#menu">Jelajahi menu</a>
+  </header>
+
+  <main>
+    <section class="reviews-hero section-wrap" id="reviewsTop">
+      <div class="reviews-hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> FROM OUR GUESTS</p>
+        <h1>Cerita dari <em>pelanggan Loffee.</em></h1>
+        <p class="hero-lede">Pengalaman, rasa, dan momen yang dibagikan oleh para pengunjung Loffee Coffee &amp; Eatery. Halaman ini sedang menampilkan contoh ulasan untuk demonstrasi tampilan.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="index.html#menu">Lihat menu</a>
+          <a class="text-link" href="#tulisUlasan">Tulis ulasan</a>
+        </div>
+      </div>
+      <div class="reviews-hero-visual" role="img" aria-label="Suasana Loffee Coffee and Eatery"></div>
+    </section>
+
+    <section class="reviews-list section-wrap" id="reviews">
+      <div class="review-demo-banner">
+        <strong>Contoh ulasan — DEMO.</strong> Nama, rating, komentar, dan foto di bawah adalah data contoh untuk demonstrasi layout, bukan ulasan pelanggan asli. Ulasan asli akan menggantikan konten ini setelah disetujui pihak Loffee.
+      </div>
+
+      <div class="reviews-tools">
+        <div class="category-filters" id="reviewFilters" aria-label="Filter ulasan"></div>
+        <p class="review-count" id="reviewCount"></p>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid"></div>
+
+      <div class="reviews-more-wrap">
+        <button class="button button-dark" id="reviewMore" type="button" hidden>Lihat ulasan lainnya</button>
+      </div>
+    </section>
+
+    <section class="review-cta section-wrap" id="tulisUlasan">
+      <div class="review-cta-card">
+        <p class="eyebrow">SHARE YOUR MOMENT</p>
+        <h2>Tulis <em>ulasanmu.</em></h2>
+        <p>Pernah berkunjung ke Loffee? Bagikan pengalamanmu. Formulir ulasan sedang disiapkan — saat ini tombol di bawah belum mengirim data ke mana pun.</p>
+        <button class="button button-dark" id="writeReviewBtn" type="button" disabled>Tulis ulasan (segera tersedia)</button>
+        <p class="review-cta-note">Formulir ulasan membutuhkan backend atau Google Form resmi Loffee sebelum bisa aktif. Belum ada ulasan yang terkirim dari halaman ini.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top"><div><a class="wordmark footer-wordmark" href="index.html">Loffee<span>.</span></a><p>Coffee, food &amp; good company.</p></div><div class="footer-links"><div><small>EXPLORE</small><a href="index.html">Beranda</a><a href="index.html#menu">Menu</a><a href="index.html#story">Tentang</a><a href="reviews.html">Review</a></div><div><small>VISIT</small><a href="index.html#visit">Lokasi</a><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/Loffee+Coffee+%26+Eatery/@-6.2396851,106.8538154,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3247a06f5fb:0x3687dfc5c814ee6d!8m2!3d-6.2396851!4d106.8563903!16s%2Fg%2F11s4wdyyw6">Google Maps</a></div></div></div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Loffee Coffee &amp; Eatery · Concept website by PortoWeb.id</span><a href="#reviewsTop">Back to top</a></div>
+  </footer>
+
+  <script src="reviews-data.js"></script>
+  <script src="reviews-ui.js"></script>
+  <script src="reviews-page.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const mt = document.getElementById("menuToggle");
+    const nav = document.getElementById("mainNav");
+    mt.addEventListener("click", () => {
+      const opened = nav.classList.toggle("open");
+      mt.setAttribute("aria-expanded", String(opened));
+    });
+    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mt.setAttribute("aria-expanded", "false");
+    }));
+    document.getElementById("writeReviewBtn").addEventListener("click", () => {});
+  </script>
+</body>
+</html>

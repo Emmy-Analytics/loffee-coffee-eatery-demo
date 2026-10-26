@@ -146,7 +146,7 @@ button,input{font:inherit}
 .menu-card-category{color:#966a3d}
 .menu-card-bottom strong{color:#583b28}
 .story-section{background:#eee8df}
-.story-image{background-image:url("assets/coffee-menu.jpg");background-position:center 30%}
+.story-image{background-image:url("assets/loffee_image_005_p01.png");background-position:center 40%;background-size:cover}
 .story-copy h2{font-family:var(--display);font-size:clamp(37px,4vw,52px);font-weight:600;letter-spacing:-.07em;line-height:1.08}
 .story-copy h2 em{font-family:var(--serif);font-style:italic;color:#81532c}
 .story-copy .eyebrow{color:#8a5728}
@@ -338,9 +338,7 @@ body{background:var(--cream);color:var(--ink)}
 .loffee-intro-skip span{color:var(--gold-strong)}
 .loffee-intro-skip:hover{background:var(--gold-strong);color:#560000}
 
-/* --- Pink accent (sangat terbatas) --- */
-.eyebrow-dot{position:relative}
-.hero-note .note-mark::after{content:"";position:absolute;right:-3px;bottom:-3px;width:7px;height:7px;border-radius:50%;background:var(--pink)}
+/* --- Pink accent: dihapus — bulatan pink tanpa fungsi (elemen sumber sudah dibersihkan) --- */
 
 /* ==========================================================================
    LOFFEE INTERACTIONS — scroll reveal, micro-hover, modal menu
@@ -488,11 +486,9 @@ body.modal-open{overflow:hidden}
 .cart-total-row strong{font-size:19px;color:var(--maroon)}
 .cart-pay-options{display:flex;flex-direction:column;gap:9px}
 .cart-pay-btn{padding:13px 16px;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s,transform .15s,opacity .2s}
-.cart-pay-btn.wa{background:#25D366;color:#fff}
-.cart-pay-btn.wa:hover:not(:disabled){background:#1eb756;transform:translateY(-1px)}
+.cart-pay-btn.wa{background:var(--maroon);color:var(--gold)}
+.cart-pay-btn.wa:hover:not(:disabled){background:var(--maroon-deep);transform:translateY(-1px)}
 .cart-pay-btn.wa:disabled{background:#c9c4b8;color:#8d877c;cursor:not-allowed}
-.cart-pay-btn.kasir{background:var(--maroon);color:var(--gold)}
-.cart-pay-btn.kasir:hover{background:var(--maroon-deep);transform:translateY(-1px)}
 .cart-note{margin:12px 0 0;font-size:10px;line-height:1.6;color:var(--muted);text-align:center}
 
 /* --- Toast --- */
@@ -544,8 +540,465 @@ body.modal-open{overflow:hidden}
 .category-card .menu-card-content{padding:16px 18px 18px}
 .category-card h3{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--maroon-deep);letter-spacing:-.02em}
 .category-card-meta{margin:6px 0 0;font-size:11px;font-weight:600;color:#a3543f;letter-spacing:.05em}
-.category-card::after{content:"Lihat →";position:absolute;right:16px;bottom:14px;font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--maroon);opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}
+.category-card::after{content:"Lihat";position:absolute;right:16px;bottom:14px;font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--maroon);opacity:0;transition:opacity .25s}
 .category-card{position:relative}
-.category-card:hover::after,.category-card:focus-visible::after{opacity:1;transform:translateX(0)}
+.category-card:hover::after,.category-card:focus-visible::after{opacity:1}
 .category-card:hover .menu-card-image img{transform:scale(1.04)}
 
+
+/* ==========================================================================
+   LOFFEE HOMEPAGE ENHANCEMENTS — hero entrance, galeri interaktif,
+   chip kategori, state tombol. Palet & struktur lama dipertahankan.
+   ========================================================================== */
+
+/* --- Anti horizontal overflow (aman: tidak memotong konten tetap) --- */
+html,body{overflow-x:clip}
+
+/* --- HERO ENTRANCE: teks & foto muncul bertahap, sekali --- */
+.hero-copy > *{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.hero-copy .hero-actions,.hero-copy .hero-note{transition-delay:.12s}
+.hero.hero-play .hero-copy > *{opacity:1;transform:translateY(0)}
+.hero-visual .hero-image-main,.hero-visual .hero-image-small,.hero-visual .image-tag,.hero-visual .vertical-label{
+  opacity:0;transform:translateY(22px) scale(.985);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);
+}
+.hero.hero-play .hero-visual .hero-image-main{opacity:1;transform:translateY(0);transition-delay:.25s}
+.hero.hero-play .hero-visual .hero-image-small{opacity:1;transform:translateY(0);transition-delay:.45s}
+.hero.hero-play .hero-visual .image-tag{opacity:1;transform:translateY(0);transition-delay:.65s}
+.hero.hero-play .hero-visual .vertical-label{opacity:1;transform:translateY(0);transition-delay:.75s}
+/* Parallax menimpa transform translateY setelah entrance selesai — aman. */
+.hero.hero-play .hero-visual .hero-image-main,.hero.hero-play .hero-visual .hero-image-small{transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .15s linear}
+
+/* Komposisi foto hero lebih menonjol, foto tidak terpotong buruk */
+.hero-visual{height:470px}
+.hero-image-main{background-size:cover;background-position:center 45%}
+.hero-image-small{background-position:center}
+
+/* --- GALERI MAKANAN INTERAKTIF --- */
+.gallery-section{padding:26px 0 30px;border-top:1px solid #ecd9bd;background:#fdf4e4}
+.gallery-head{width:min(1180px,89%);margin:0 auto 22px;display:flex;align-items:end;justify-content:space-between;gap:18px}
+.gallery-head h2{font-family:var(--serif);font-size:clamp(30px,4vw,44px);font-weight:500;color:var(--maroon-deep);letter-spacing:-.02em;margin:0}
+.gallery-head h2 em{font-style:italic;color:var(--maroon)}
+.gallery-track{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:6px max(5.5%,calc((100vw - 1180px)/2)) 18px;scrollbar-width:none}
+.gallery-track::-webkit-scrollbar{display:none}
+.gallery-card{scroll-snap-align:start;flex:0 0 236px;margin:0;background:var(--white);border:1px solid #ecd9bd;overflow:hidden;cursor:pointer;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.gallery-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(86,0,0,.12)}
+.gallery-card:active{transform:translateY(-1px) scale(.985)}
+.gallery-card .menu-card-image{aspect-ratio:4/3}
+.gallery-card-meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 14px}
+.gallery-card-meta strong{font-family:var(--display);font-size:13.5px;font-weight:700;color:#5a1a10;letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gallery-card-meta span{font-size:12px;font-weight:700;color:var(--maroon);white-space:nowrap}
+.gallery-card-deco{cursor:default}
+.gallery-hint{width:min(1180px,89%);margin:0 auto;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#b08a76}
+@media(max-width:650px){
+  .gallery-head{flex-direction:column;align-items:flex-start;gap:6px}
+  .gallery-card{flex-basis:200px}
+  .gallery-card-meta{padding:10px 12px}
+  .gallery-card-meta strong{font-size:12.5px}
+}
+
+/* --- NAVIGASI KATEGORI: chip nyaman disentuh --- */
+.category-filters{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.category-filters::-webkit-scrollbar{display:none}
+.filter{flex:0 0 auto;min-height:40px;padding:0 16px;display:inline-flex;align-items:center;border:1px solid transparent;border-radius:20px;background:transparent;color:#96614f;font-size:12px;font-weight:600;cursor:pointer}
+.filter:active{transform:scale(.96)}
+.filter.active{background:var(--maroon);color:var(--gold);border-color:var(--maroon)}
+@media(max-width:650px){.menu-tools{gap:12px}}
+
+/* --- TOMBOL: state pressed untuk mobile + pop FAB --- */
+.button:active{transform:translateY(0) scale(.97)}
+.text-link:active{opacity:.7}
+.add-to-cart:active:not(:disabled){transform:scale(.94)}
+.cart-pay-btn:active:not(:disabled){transform:scale(.98)}
+.cart-close:active{transform:scale(.94)}
+.cart-fab:active{transform:scale(.94)}
+.cart-fab.has-items{animation:loffee-fab-pop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes loffee-fab-pop{0%{transform:scale(.8)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* --- SCROLL REVEAL tambahan (story/visit/foto dalam .section-wrap) --- */
+.reveal-ready .gallery-section .reveal-child{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal-ready .gallery-section .reveal-child.is-visible{opacity:1;transform:translateY(0)}
+
+/* --- REDUCED MOTION: matikan semua entrance & interaksi baru --- */
+@media(prefers-reduced-motion:reduce){
+  .hero-copy > *,.hero-visual .hero-image-main,.hero-visual .hero-image-small,.hero-visual .image-tag,.hero-visual .vertical-label,
+  .reveal-ready .gallery-section .reveal-child{opacity:1 !important;transform:none !important;transition:none !important}
+  .filter:active,.gallery-card:active,.cart-fab:active,.button:active{transform:none}
+  .cart-fab.has-items{animation:none}
+}
+
+/* ==========================================================================
+   LOFFEE v3 — search UI, "Semua kategori" kontras, review (DEMO), panah dihapus
+   ========================================================================== */
+
+/* --- Search bar: diperjelas, nyaman disentuh --- */
+.search-box{display:flex;align-items:center;gap:10px;width:min(320px,100%);min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:22px;background:#fffdf9;transition:border-color .25s,box-shadow .25s}
+.search-box:focus-within{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(245,198,93,.25)}
+.search-glass{display:grid;place-items:center;color:#a3543f;flex-shrink:0}
+.search-box input{width:100%;border:0;outline:0;background:transparent;font-size:14px;color:var(--ink)}
+.search-box input::placeholder{color:#b08a76}
+.search-clear{display:grid;place-items:center;width:32px;height:32px;margin-right:-6px;border:0;border-radius:50%;background:transparent;color:#96614f;cursor:pointer;flex-shrink:0;transition:background .2s,color .2s}
+.search-clear:hover{background:#f3e3cd;color:var(--maroon)}
+.search-clear:active{transform:scale(.92)}
+/* iOS: hilangkan tombol close bawaan agar tidak dobel dengan search-clear */
+.search-box input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+
+/* --- Tombol "Semua kategori": kontras di semua state --- */
+.filter{min-height:40px;padding:0 16px;display:inline-flex;align-items:center;border:1px solid transparent;border-radius:20px;background:transparent;color:#96614f;font-size:12px;font-weight:600;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.filter:hover,.filter:focus-visible,.filter.active{background:var(--maroon);color:var(--gold);border-color:var(--maroon)}
+.filter:hover:not(.active),.filter:focus-visible:not(.active){color:var(--gold);background:var(--maroon)}
+.filter:focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
+.filter:active{color:var(--gold-strong)}
+.filter:active::after{content:none}
+
+/* --- Tombol qty keranjang: lingkaran simetris (teks diganti SVG) --- */
+.cart-item-qty button.cart-step{display:grid;place-items:center;width:26px;height:26px;padding:0}
+.cart-item-qty button.cart-step svg{display:block}
+
+/* --- REVIEW: kartu (dipakai homepage preview & halaman review) --- */
+.review-card{position:relative;display:flex;flex-direction:column;gap:14px;padding:24px 24px 22px;background:var(--white);border:1px solid #ecd9bd;border-radius:12px;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.review-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(86,0,0,.1)}
+.review-card-head{display:flex;align-items:center;gap:12px}
+.review-avatar{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#f3e3cd;color:var(--maroon);font-family:var(--display);font-weight:700;font-size:18px;flex-shrink:0}
+.review-card-meta{flex:1;min-width:0;display:grid;gap:2px}
+.review-card-meta strong{font-family:var(--display);font-size:14px;color:#5a1a10;letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.review-card-meta small{color:#9c7256;font-size:10.5px;letter-spacing:.04em}
+.review-stars{display:flex;gap:2px;flex-shrink:0}
+.review-stars .star-on{fill:var(--gold-strong)}
+.review-stars .star-off{fill:#e4d3b8}
+.review-card-text{margin:0;color:#6d4a3e;font-size:13.5px;line-height:1.75}
+.review-card-photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #f0e2cb}
+.review-demo-badge{position:absolute;top:14px;right:14px;padding:3px 9px;border-radius:10px;background:var(--maroon);color:var(--gold);font-size:9px;font-weight:800;letter-spacing:.14em}
+
+/* --- Preview review di homepage --- */
+.review-preview{padding-top:80px;padding-bottom:30px}
+.review-preview-head{margin-bottom:20px}
+.review-preview-banner{display:inline-block;margin-bottom:24px;padding:9px 16px;border:1px solid #ecd9bd;border-radius:20px;background:#f7ecd9;color:#7a4636;font-size:11px;line-height:1.6}
+.review-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:900px){.review-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.review-preview-grid{grid-template-columns:1fr}.review-preview{padding-top:60px}}
+
+/* --- Halaman review --- */
+.reviews-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:6%;align-items:center;padding-top:64px;padding-bottom:64px}
+.reviews-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,6vw,74px);line-height:1.02;color:var(--maroon-deep);letter-spacing:-.03em;margin:0 0 22px}
+.reviews-hero h1 em{font-style:italic;color:var(--maroon)}
+.reviews-hero-visual{height:360px;border-radius:14px;background:#f0dfc6 url("assets/reviews/demo-cafe.svg") center/cover no-repeat;border:1px solid #ecd9bd}
+.reviews-list{padding-top:20px;padding-bottom:70px}
+.review-demo-banner{margin-bottom:26px;padding:14px 18px;border:1px solid #ecd9bd;border-left:3px solid var(--gold-strong);border-radius:8px;background:#f7ecd9;color:#7a4636;font-size:12px;line-height:1.7}
+.reviews-tools{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:24px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.review-count{margin:0;color:#9c7256;font-size:11px;letter-spacing:.05em}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.reviews-more-wrap{display:flex;justify-content:center;margin-top:32px}
+@media(max-width:900px){.reviews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){
+  .reviews-hero{grid-template-columns:1fr;padding-top:44px;padding-bottom:44px;gap:28px}
+  .reviews-hero-visual{height:230px}
+  .reviews-grid{grid-template-columns:1fr;gap:14px}
+  .review-card{padding:20px 18px 18px}
+  .reviews-tools{flex-direction:column;align-items:stretch;gap:10px}
+}
+
+/* --- CTA tulis ulasan --- */
+.review-cta{padding-bottom:90px}
+.review-cta-card{padding:48px clamp(24px,6vw,70px);text-align:center;border:1px solid #ecd9bd;border-radius:14px;background:#f7ecd9}
+.review-cta-card h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.5vw,52px);color:var(--maroon-deep);letter-spacing:-.02em;margin:0 0 16px}
+.review-cta-card h2 em{font-style:italic;color:var(--maroon)}
+.review-cta-card p{max-width:520px;margin:0 auto 22px;color:#7d5347;font-size:13.5px;line-height:1.8}
+.review-cta-note{font-size:10.5px !important;color:#9c7256 !important;margin-top:16px !important}
+.review-cta-card .button[disabled]{opacity:.55;cursor:not-allowed}
+
+/* --- Reduced motion untuk elemen baru --- */
+@media(prefers-reduced-motion:reduce){
+  .review-card:hover{transform:none}
+  .search-box,.filter,.search-clear{transition:none}
+}
+
+/* ==========================================================================
+   LOFFEE v4 — hero cutout premium, Pilihan Loffee drag-to-scroll
+   ========================================================================== */
+
+/* --- HERO CUTOUT --- */
+.hero-visual{height:520px;position:relative;padding:0}
+.hero-frame{position:absolute;right:8%;top:-6%;width:58%;height:112%;border-radius:220px 220px 26px 26px;background:var(--maroon);opacity:.08}
+.hero-cutout{position:absolute;display:grid;place-items:center;filter:drop-shadow(0 30px 30px rgba(86,0,0,.18))}
+.hero-cutout img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.hero-cutout-drink{right:6%;top:0;width:min(300px,54%);height:78%;z-index:3}
+.hero-cutout-food{left:0;bottom:4%;width:min(280px,50%);height:58%;z-index:4;transform:translateX(6%)}
+.hero-cutout-support{right:2%;bottom:-4%;width:min(170px,32%);height:36%;z-index:5;opacity:.96}
+.hero-shadow{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(86,0,0,.2),transparent);z-index:2}
+.hero-shadow-drink{right:10%;bottom:2%;width:56%;height:9%}
+.hero-shadow-food{left:2%;bottom:0;width:52%;height:7%}
+.hero-cutout-fallback{background:#f0dfc6;border-radius:16px}
+/* Entrance: cutout fade+slide sekali (dipicu .hero-play yang sudah ada) */
+.hero-visual .hero-cutout,.hero-visual .hero-shadow,.hero-visual .hero-frame,.hero-visual .vertical-label{opacity:0;transform:translateY(22px)}
+.hero.hero-play .hero-visual .hero-cutout-drink{opacity:1;transform:translateY(0);transition:opacity .9s cubic-bezier(.22,1,.36,1) .25s,transform .9s cubic-bezier(.22,1,.36,1) .25s}
+.hero.hero-play .hero-visual .hero-cutout-food{opacity:1;transform:translateY(0);transition:opacity .9s cubic-bezier(.22,1,.36,1) .42s,transform .9s cubic-bezier(.22,1,.36,1) .42s}
+.hero.hero-play .hero-visual .hero-cutout-support{opacity:.96;transform:translateY(0);transition:opacity .9s cubic-bezier(.22,1,.36,1) .56s,transform .9s cubic-bezier(.22,1,.36,1) .56s}
+.hero.hero-play .hero-visual .hero-shadow,.hero.hero-play .hero-visual .hero-frame{opacity:1;transform:translateY(0);transition:opacity 1s ease .5s,transform 1s ease .5s}
+.hero.hero-play .hero-visual .hero-frame{opacity:.08}
+.hero.hero-play .hero-visual .hero-shadow-drink{opacity:1}
+.hero.hero-play .hero-visual .hero-shadow-food{opacity:1}
+.hero.hero-play .hero-visual .vertical-label{opacity:1;transform:translateY(0);transition:opacity .7s ease .85s,transform .7s ease .85s}
+
+@media(max-width:900px){
+  .hero-visual{height:440px}
+  .hero-cutout-drink{width:56%}
+  .hero-cutout-food{width:52%}
+}
+@media(max-width:650px){
+  .hero-visual{height:330px;margin-top:6px}
+  .hero-frame{top:-4%;width:70%}
+  .hero-cutout-drink{right:4%;width:58%;height:72%}
+  .hero-cutout-food{width:52%;height:52%;transform:translateX(2%)}
+  .hero-cutout-support{width:36%;height:30%;bottom:-2%}
+}
+
+/* --- Pilihan Loffee: drag state & snap --- */
+.gallery-track{cursor:grab}
+.gallery-track.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.gallery-track.dragging .gallery-card{pointer-events:none}
+.gallery-head{display:flex;align-items:end;justify-content:space-between;gap:18px}
+.gallery-sub{margin:0 0 4px;color:#8a5b52;font-size:12px;line-height:1.7;max-width:300px}
+@media(max-width:650px){.gallery-head{flex-direction:column;align-items:flex-start;gap:8px}}
+
+/* --- Reduced motion: hero entrance langsung tampil --- */
+@media(prefers-reduced-motion:reduce){
+  .hero-visual .hero-cutout,.hero-visual .hero-shadow,.hero-visual .hero-frame,.hero-visual .vertical-label{opacity:1 !important;transform:none !important;transition:none !important}
+  .hero-visual .hero-frame{opacity:.08 !important}
+}
+
+/* ==========================================================================
+   LOFFEE v5 — Menu desktop rapi + carousel Favorit Pelanggan
+   ========================================================================== */
+
+/* --- A. Search bar terpisah, lebar mandiri (tidak menyusut) --- */
+.menu-tools{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.menu-tools .search-box{flex:0 0 auto;width:min(460px,100%);min-width:300px}
+.menu-tools .search-box input{min-width:0}
+
+/* --- B. Kategori: wrap rapi, bukan scroll horizontal --- */
+.menu-tools .category-filters{display:flex;flex-wrap:wrap;gap:10px 10px;overflow-x:visible;max-width:100%}
+
+/* --- Tombol kategori (Menu desktop): rounded lembut, hanya di sini --- */
+.menu-tools .filter{
+  min-height:42px;padding:9px 20px;
+  border-radius:14px;border:1px solid #ecd9bd;
+  background:#fffdf9;color:#96614f;
+  font-size:12.5px;font-weight:600;
+  box-shadow:0 1px 2px rgba(86,0,0,.04);
+  transition:background .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.menu-tools .filter:hover,.menu-tools .filter:focus-visible{background:#f7ecd9;border-color:#e0c9a4;color:#7a4a2e;box-shadow:0 2px 6px rgba(86,0,0,.06)}
+.menu-tools .filter.active{background:var(--maroon);border-color:var(--maroon);color:var(--gold);box-shadow:0 3px 10px rgba(133,0,0,.18)}
+.menu-tools .filter:active{transform:scale(.97)}
+.menu-tools .filter:focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
+
+/* --- C. Carousel Favorit Pelanggan: tombol Tambah rounded lembut --- */
+.gallery-card{border-radius:14px;overflow:hidden}
+.gallery-card .menu-card-image{border-radius:0}
+.gallery-card-foot{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px 14px 12px}
+.gallery-card-foot .gallery-card-meta{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.gallery-card-foot .gallery-card-meta strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex-shrink:1}
+.gallery-card-foot .gallery-add{width:100%;min-height:36px;padding:7px 14px;border-radius:12px;border:1px solid var(--maroon);background:var(--maroon);color:var(--gold);font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .25s ease,transform .2s ease,box-shadow .25s ease}
+.gallery-card-foot .gallery-add:hover:not(:disabled),.gallery-card-foot .gallery-add:focus-visible{background:var(--maroon-deep);box-shadow:0 3px 8px rgba(133,0,0,.2)}
+.gallery-card-foot .gallery-add:active:not(:disabled){transform:scale(.97)}
+.gallery-card-foot .gallery-add:disabled{background:#f3e3cd;border-color:#ecd9bd;color:#b8a692;cursor:not-allowed}
+.gallery-card-foot .gallery-add:focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
+
+/* --- Catatan demo di header carousel --- */
+.gallery-sub-wrap{display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:right}
+.gallery-demo-note{margin:0;color:#b08a76;font-size:10.5px;line-height:1.5}
+@media(max-width:650px){
+  .gallery-sub-wrap{align-items:flex-start;text-align:left}
+  .menu-tools .search-box{width:100%;min-width:0}
+}
+
+/* ==========================================================================
+   LOFFEE v6 — lokasi, reservasi, footer lengkap, bahasa ID/EN
+   ========================================================================== */
+
+/* --- Navbar: language switch --- */
+.lang-switch{display:flex;align-items:center;gap:2px;border:1px solid rgba(245,198,93,.45);border-radius:14px;padding:3px}
+.lang-switch span{width:1px;height:16px;background:rgba(245,198,93,.35)}
+.lang-switch button{min-height:28px;padding:0 10px;border:0;border-radius:11px;background:transparent;color:#f4d9b6;font-size:11px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s}
+.lang-switch button:hover{color:var(--gold-strong)}
+.lang-switch button.active{background:var(--gold);color:var(--maroon-deep)}
+@media(max-width:650px){.header-cta{display:none}.lang-switch{margin-left:auto}.menu-toggle{margin-left:0}}
+
+/* --- Lokasi: dua kolom + peta embed --- */
+.visit-section{align-items:stretch}
+.visit-info{display:grid;gap:10px;margin:20px 0 26px}
+.visit-info-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #ecd9bd}
+.visit-info-row small{color:#b08a76;font-size:9.5px;font-weight:800;letter-spacing:.14em}
+.visit-info-row strong{color:var(--maroon-deep);font-size:13.5px;font-weight:600}
+.visit-map{position:relative;min-height:380px;border:1px solid #ecd9bd;border-radius:14px;overflow:hidden;background:#f0dfc6}
+.visit-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media(max-width:900px){.visit-section{grid-template-columns:1fr;gap:30px}.visit-map{min-height:300px}}
+@media(max-width:650px){.visit-info-row{grid-template-columns:1fr;gap:3px}}
+
+/* --- Reservasi --- */
+.reserve-section{padding-top:30px;padding-bottom:90px}
+.reserve-card{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,70px);padding:clamp(28px,5vw,60px);border:1px solid #ecd9bd;border-radius:16px;background:#f7ecd9}
+.reserve-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(36px,4.5vw,54px);color:var(--maroon-deep);letter-spacing:-.02em;margin:0 0 18px}
+.reserve-copy h2 em{font-style:italic;color:var(--maroon)}
+.reserve-lede{margin:0;color:#7d5347;font-size:13.5px;line-height:1.8}
+.reserve-form{display:flex;flex-direction:column;gap:16px}
+.reserve-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.reserve-fields label{display:grid;gap:6px}
+.reserve-fields label span{color:#96614f;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.reserve-fields input{min-height:44px;padding:0 14px;border:1px solid #e0c9a4;border-radius:10px;background:#fffdf9;color:var(--ink);font-size:14px;transition:border-color .25s,box-shadow .25s}
+.reserve-fields input:focus{outline:0;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(245,198,93,.25)}
+.reserve-error{margin:0;padding:10px 14px;border-radius:8px;background:#fbeaea;border-left:3px solid #a33b2e;color:#8f2f24;font-size:12px;line-height:1.6}
+.reserve-submit{justify-content:center}
+.reserve-note{margin:0;color:#9c7256;font-size:10.5px;line-height:1.6}
+@media(max-width:900px){.reserve-card{grid-template-columns:1fr}}
+@media(max-width:650px){.reserve-fields{grid-template-columns:1fr}}
+
+/* --- Footer lengkap --- */
+.footer-top{display:grid;grid-template-columns:1.2fr 2fr;gap:clamp(30px,6vw,90px);padding-bottom:50px}
+.footer-brand{display:grid;gap:16px;align-content:start}
+.footer-brand p{margin:0;max-width:300px;color:#e8bfa3;font-size:12px;line-height:1.8}
+.footer-social{display:flex;gap:10px}
+.footer-social .soc{display:grid;place-items:center;width:40px;height:40px;border:1px solid rgba(245,198,93,.3);border-radius:12px;background:rgba(255,247,232,.06);transition:background .25s,border-color .25s}
+.footer-social .soc:hover{background:rgba(245,198,93,.15);border-color:var(--gold)}
+.footer-social .soc img{width:20px;height:20px;object-fit:contain}
+.footer-social .soc-missing{opacity:.45;cursor:not-allowed}
+.footer-links{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,60px)}
+.footer-links>div{display:grid;align-content:start;gap:13px}
+.footer-links small{margin-bottom:6px;color:var(--gold);font-size:9px;font-weight:800;letter-spacing:.15em}
+.footer-links a{font-size:12px;color:#f2d8bd;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-links strong{font-size:13px;color:#fff}
+.footer-links span{font-size:12px;color:#e8bfa3;line-height:1.6}
+.order-link{display:flex;align-items:center;gap:10px}
+.order-link img{width:18px;height:18px;object-fit:contain;opacity:.85}
+.order-link[data-verified="no"]{opacity:.55;cursor:not-allowed}
+.order-link[data-verified="no"]:hover{color:#f2d8bd}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr;gap:34px}.footer-links{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.footer-links{grid-template-columns:1fr;gap:28px}.footer-links>div{gap:11px}}
+
+/* ==========================================================================
+   LOFFEE v7 — tab Favorit (Sheets), keranjang foto+WA, footer platform,
+   background penghubung sebelum footer
+   ========================================================================== */
+
+/* --- Label kartu carousel (dari kolom `label` tab Favorit) --- */
+.gallery-card-tag{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:10px;background:var(--gold);color:#5a2608;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.menu-card-image{position:relative}
+.gallery-card .menu-card-image{position:relative}
+
+/* --- Foto thumbnail item keranjang --- */
+.cart-item{display:flex;align-items:center;gap:12px}
+.cart-item-thumb{width:44px;height:44px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#f5e9d5;display:grid;place-items:center}
+.cart-item-thumb img{width:100%;height:100%;object-fit:contain;padding:3px}
+.cart-item-thumb.no-photo{color:#a3543f;font-family:var(--display);font-weight:800;font-size:14px}
+
+/* --- Badge demo link platform di footer --- */
+.order-link small{padding:2px 7px;border-radius:8px;background:rgba(245,198,93,.18);color:var(--gold);font-size:8.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+
+/* --- Background penghubung sebelum footer (transisi hangat, tanpa ornamen) --- */
+.pre-footer-band{position:relative;min-height:230px;display:grid;place-items:center;text-align:center;padding:56px 5.5%;background:linear-gradient(180deg,#f7ecd9 0%,#f0dfc6 55%,#3c1512 130%)}
+.pre-footer-band::before{content:"";position:absolute;inset:0;background:url("assets/loffee_image_001_p01.png") center 55%/cover no-repeat;opacity:.14;pointer-events:none;filter:saturate(.9)}
+.pre-footer-band > *{position:relative}
+.pre-footer-band p{margin:0 0 22px;max-width:520px;font-family:var(--serif);font-size:clamp(22px,3.2vw,34px);line-height:1.3;color:var(--maroon-deep);font-style:italic}
+.pre-footer-band .band-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+@media(max-width:650px){.pre-footer-band{min-height:190px;padding:44px 7%}}
+
+/* ==========================================================================
+   LOFFEE v8 — tombol rounded terpadu, mobile kategori, polish
+   ========================================================================== */
+
+/* --- Tombol rounded di area yang diminta (selector spesifik) --- */
+.hero-actions .button.button-dark,
+.band-actions .button.button-dark,
+.visit-copy .button.button-dark,
+.reserve-submit{
+  border-radius:14px;padding:13px 26px;min-height:46px;
+  box-shadow:0 2px 6px rgba(86,0,0,.08);
+  transition:background .25s ease,transform .2s ease,box-shadow .25s ease;
+}
+.hero-actions .button.button-dark:hover,
+.band-actions .button.button-dark:hover,
+.visit-copy .button.button-dark:hover,
+.reserve-submit:hover:not(:disabled){box-shadow:0 5px 14px rgba(133,0,0,.2)}
+.hero-actions .button.button-dark:active,
+.band-actions .button.button-dark:active,
+.visit-copy .button.button-dark:active,
+.reserve-submit:active{transform:scale(.97)}
+
+/* --- Select form reservasi menyatu dengan input --- */
+.reserve-fields select{
+  min-height:44px;padding:0 12px;border:1px solid #e0c9a4;border-radius:10px;
+  background:#fffdf9;color:var(--ink);font-size:14px;transition:border-color .25s,box-shadow .25s;
+}
+.reserve-fields select:focus{outline:0;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(245,198,93,.25)}
+
+/* --- MOBILE: kategori = satu baris chip digeser + tombol "Lihat semua" --- */
+.categories-mobile-row{display:none}
+@media(max-width:650px){
+  /* Sembunyikan wrap panjang, tampilkan chip scroll + panel */
+  .menu-tools .category-filters{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;padding-bottom:2px;max-width:100%;
+  }
+  .menu-tools .category-filters::-webkit-scrollbar{display:none}
+  .menu-tools .filter{flex:0 0 auto}
+
+  .cat-all-toggle{display:inline-flex;align-items:center;min-height:42px;padding:9px 18px;border:1px solid #ecd9bd;border-radius:14px;background:#fffdf9;color:#96614f;font-size:12.5px;font-weight:600;cursor:pointer;transition:background .25s,color .25s;flex:0 0 auto}
+  .cat-all-toggle:hover{background:#f7ecd9;color:#7a4a2e}
+
+  .cat-sheet-backdrop{position:fixed;inset:0;z-index:880;background:rgba(40,6,6,.5);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .cat-sheet-backdrop.open{opacity:1;pointer-events:auto}
+  .cat-sheet{width:100%;max-height:72vh;overflow:auto;background:var(--cream);border-radius:18px 18px 0 0;padding:20px 5% calc(20px + env(safe-area-inset-bottom));transform:translateY(30px);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+  .cat-sheet-backdrop.open .cat-sheet{transform:translateY(0)}
+  .cat-sheet h3{margin:0 0 14px;font-family:var(--display);font-size:18px;color:var(--maroon-deep)}
+  .cat-sheet .cat-sheet-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(86,0,0,.2);background:rgba(255,247,232,.95);color:var(--maroon);font-size:17px;cursor:pointer}
+  .cat-sheet .category-filters{display:flex;flex-wrap:wrap;gap:10px;overflow:visible}
+}
+
+/* --- Review mobile: kartu ringkas dalam carousel horizontal --- */
+@media(max-width:650px){
+  .review-preview-grid{display:flex;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:8px;scrollbar-width:none}
+  .review-preview-grid::-webkit-scrollbar{display:none}
+  .review-preview-grid .review-card{flex:0 0 262px;scroll-snap-align:start}
+  .reviews-grid{display:flex;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:8px;scrollbar-width:none}
+  .reviews-grid::-webkit-scrollbar{display:none}
+  .reviews-grid .review-card{flex:0 0 272px;scroll-snap-align:start}
+}
+
+/* --- Carousel Favorit: seimbang, tidak condong kiri --- */
+.gallery-section{width:min(1180px,100%);margin-inline:auto;padding-inline:0}
+@media(min-width:651px){
+  .gallery-head{width:min(1180px,89%);margin-inline:auto;padding-inline:0}
+  .gallery-track{padding-inline:max(5.5%,calc((100vw - 1180px)/2))}
+}
+@media(max-width:650px){
+  .gallery-head{padding-inline:5.5%}
+  .gallery-track{padding-inline:5.5%}
+  .gallery-card{flex-basis:218px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .cat-sheet-backdrop,.cat-sheet{transition:none}
+}
+
+/* --- Kredit pembuat: satu baris kecil, tanpa kotak/background/border --- */
+.footer-credit{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 5.5% 14px;color:#9c8a76;font-size:11px}
+.footer-credit a[href*="wa.me"]{color:#d7ad7c;font-weight:600;transition:color .2s}
+.footer-credit a[href*="wa.me"]:hover{color:var(--gold-strong)}
+.footer-credit a[href*="wa.me"]:active{opacity:.7}
+.footer-credit .credit-ig{display:inline-flex;align-items:center;opacity:.75;transition:opacity .2s}
+.footer-credit .credit-ig:hover{opacity:1}
+.footer-credit .credit-ig img{width:14px;height:14px;object-fit:contain}
+.footer-credit .ig-missing{display:none}
+@media(max-width:650px){
+  .site-footer{padding-bottom:76px} /* clearance FAB keranjang di mobile */
+  .footer-credit{justify-content:center;padding:8px 5% 12px}
+}
+
+/* --- Info halal footer (kecil, tanpa klaim belum terverifikasi) --- */
+.halal-info{display:flex;align-items:center;gap:12px;padding-top:14px;margin-top:16px;border-top:1px solid rgba(245,198,93,.18)}
+.halal-info img{width:52px;height:52px;object-fit:contain;flex-shrink:0}
+.halal-info p{margin:0;color:#bfa893;font-size:10.5px;line-height:1.6;max-width:280px}
+.halal-info.halal-missing img{display:none}
+@media(max-width:650px){.halal-info p{max-width:none}}

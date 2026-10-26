@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#F3E3CD"/>
+  <circle cx="200" cy="150" r="104" fill="#FFF7E8" stroke="#d9c4a4" stroke-width="3"/>
+  <text x="200" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-style="italic" fill="#a3896b">Loffee</text>
+  <text x="200" y="174" text-anchor="middle" font-family="Arial" font-size="11" letter-spacing="3" fill="#bfa487">FOTO SEGERA</text>
+</svg>

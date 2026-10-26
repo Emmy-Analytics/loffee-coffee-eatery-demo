@@ -1,0 +1,16 @@
+[nav] http://localhost:8732/index.html
+[load fired]
+[net] 302 https://script.google.com/macros/s/AKfycbwo1ty5R-6e47RZsL6aQmCVMDe0v--qHZ-gp55VO 
+[net] 200 https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTEEIYOQu {"success":true,"total":151,"data":[{"id":"TB001","cabang_id":"TEBET","nama":"Mont Blanc Coffee & Banana Fritters","desk
+[nav] http://localhost:8732/index.html
+[load fired]
+[net] 302 https://script.google.com/macros/s/AKfycbwo1ty5R-6e47RZsL6aQmCVMDe0v--qHZ-gp55VO 
+[net] 200 https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnScgOSJDw {"success":true,"total":151,"data":[{"id":"TB001","cabang_id":"TEBET","nama":"Mont Blanc Coffee & Banana Fritters","desk
+--- qa-v4.mjs --- FAILED: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('#galleryTrack .gallery-card').first()[22m
+[2m    - locator resolved to <article tabindex="0" role="button" class="gallery-card reveal-child is-visible" aria-label="Lihat detail Mont Blanc Coffee & Banana Fritters">?</article>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabl
+--- browser errors ---
+console: Failed to load resource: the server responded with a status of 404 (Not Found)

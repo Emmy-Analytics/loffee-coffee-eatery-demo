@@ -1,0 +1,104 @@
+/*
+ * GOOGLE APPS SCRIPT — LOFFEE (ganti seluruh isi editor dengan kode ini)
+ *
+ * Mendukung dua resource lewat SATU endpoint Web App /exec:
+ *   /exec                      -> tab Menu   (perilaku lama, tidak berubah)
+ *   /exec?resource=favorit     -> tab Favorit, SUDAH DIGABUNG dengan data Menu
+ *                                 (nama, harga, kategori, foto dari tab Menu)
+ *
+ * Allowlist resource: hanya "menu" dan "favorit". Parameter lain ditolak.
+ * Tidak perlu membuat spreadsheet/project baru. Setelah kode disimpan:
+ *   Deploy > Manage deployments > Edit > Version: New version > Deploy
+ * lalu uji:  <URL>/exec            (harus tetap 151 row menu)
+ *            <URL>/exec?resource=favorit
+ */
+
+const SPREADSHEET_ID = "1E7ItJQTWUlEjvanz5nNqN8bzLwPFhRKS2ayd48CiRe0";
+const SHEET_NAME = "Menu"; // JANGAN diganti — kontrak API Menu lama
+
+function doGet(e) {
+  var resource = "menu";
+  if (e && e.parameter && e.parameter.resource) {
+    resource = String(e.parameter.resource).toLowerCase().trim();
+  }
+
+  // Allowlist — parameter arbitrer tidak bisa membaca sembarang tab
+  if (resource !== "menu" && resource !== "favorit") {
+    return json({ success: false, message: "Resource tidak dikenal: " + resource });
+  }
+
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  var menuSheet = ss.getSheetByName(SHEET_NAME);
+  if (!menuSheet) return json({ success: false, message: "Tab Menu tidak ditemukan." });
+
+  var menuData = readSheet(menuSheet);
+
+  if (resource === "menu") {
+    return json({ success: true, data: menuData }); // identik dengan perilaku lama
+  }
+
+  // ---- resource = favorit ----
+  var favSheet = ss.getSheetByName("Favorit");
+  if (!favSheet) {
+    return json({ success: false, message: "Tab 'Favorit' belum tersedia di spreadsheet." });
+  }
+  var favRows = readSheet(favSheet);
+
+  // Index menu by id
+  var byId = {};
+  menuData.forEach(function (m) { if (m.id != null) byId[String(m.id).trim()] = m; });
+
+  var out = [];
+  var skipped = [];
+  favRows.forEach(function (r) {
+    var id = String(r.id_menu == null ? "" : r.id_menu).trim();
+    var aktifRaw = r.aktif == null ? "" : r.aktif;
+    if (typeof aktifRaw === "boolean") aktifRaw = aktifRaw ? "TRUE" : "FALSE";
+    var aktif = String(aktifRaw).trim().toUpperCase() === "TRUE";
+
+    if (!aktif) return;                       // baris nonaktif tidak dikirim
+    var m = byId[id];
+    if (!m) { skipped.push(id); return; }     // ID tidak valid -> catat & lewati
+
+    out.push({
+      id_menu: id,
+      urutan: Number(r.urutan) || 9999,
+      label: String(r.label == null ? "" : r.label).trim(),
+      // Data produk dari tab Menu (sumber utama):
+      id: m.id, nama: m.nama, deskripsi: m.deskripsi,
+      harga: m.harga, kategori: m.kategori, foto_url: m.foto_url,
+      tersedia: m.tersedia
+    });
+  });
+
+  out.sort(function (a, b) { return a.urutan - b.urutan; });
+
+  var resp = { success: true, data: out };
+  if (skipped.length) resp.warning = "id_menu tidak ditemukan di tab Menu: " + skipped.join(", ");
+  return json(resp);
+}
+
+/* Baca satu sheet jadi array of object; boolean Sheets -> teks TRUE/FALSE */
+function readSheet(sheet) {
+  var rows = sheet.getDataRange().getValues();
+  if (rows.length < 2) return [];
+  var headers = rows[0].map(function (h) { return String(h).trim(); });
+  var out = [];
+  for (var i = 1; i < rows.length; i++) {
+    var obj = {}, hasValue = false;
+    for (var c = 0; c < headers.length; c++) {
+      var val = rows[i][c];
+      if (typeof val === "boolean") val = val ? "TRUE" : "FALSE";
+      obj[headers[c]] = val;
+      if (val !== "" && val !== null) hasValue = true;
+    }
+    if (hasValue) out.push(obj);
+  }
+  return out;
+}
+
+function json(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}

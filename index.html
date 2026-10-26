@@ -29,45 +29,90 @@
     </div>
     <div class="loffee-intro-line loffee-intro-line-top" aria-hidden="true"><span>LOFFEE COFFEE &amp; EATERY</span><span>TEBET · JAKARTA</span></div>
     <div class="loffee-intro-line loffee-intro-line-bottom" aria-hidden="true"><span>COFFEE</span><i></i><span>FOOD</span><i></i><span>GOOD COMPANY</span></div>
-    <button class="loffee-intro-skip" id="loffeeIntroSkip" type="button">Skip intro <span>↗</span></button>
+    <button class="loffee-intro-skip" id="loffeeIntroSkip" type="button">Skip intro</button>
   </div>
   <div class="demo-bar"><span>CONCEPT WEBSITE</span><p>Konsep presentasi — informasi dan materi visual perlu disetujui pihak Loffee sebelum publikasi.</p></div>
   <header class="site-header">
     <a class="wordmark" href="#home" aria-label="Loffee beranda">Loffee<span>.</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Buka navigasi">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Buka navigasi" aria-hidden="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
     <nav class="main-nav" id="mainNav">
-      <a href="#home">Beranda</a><a href="#menu">Menu</a><a href="#story">Tentang</a><a href="#visit">Kunjungi</a>
+      <a href="#home" data-i18n="navHome">Beranda</a><a href="#menu" data-i18n="navMenu">Menu</a><a href="#story" data-i18n="navAbout">Tentang</a><a href="reviews.html" data-i18n="navReview">Review</a><a href="#visit" data-i18n="navVisit">Kunjungi</a>
     </nav>
-    <a class="header-cta" href="#menu">Jelajahi menu <span>↗</span></a>
+    <a class="header-cta" href="#menu" data-i18n="headerCta">Jelajahi menu</a>
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Pilih bahasa">
+      <button type="button" data-lang="id" class="active" aria-pressed="true">ID</button>
+      <span aria-hidden="true"></span>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
 
   <main>
     <section class="hero section-wrap" id="home">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> COFFEE · FOOD · EVERYDAY MOMENTS</p>
-        <h1>Korean favorites.<br><em>Coffee breaks.</em></h1>
-        <p class="hero-lede">Dari Korean favorites dan hidangan comfort food sampai kopi untuk jeda di tengah hari. Temukan pilihan Loffee yang cocok untuk momenmu.</p>
-        <div class="hero-actions"><a class="button button-dark" href="#menu">Lihat menu <span>↘</span></a><a class="text-link" href="#visit">Temukan lokasi <span>↗</span></a></div>
-        <div class="hero-note"><span class="note-mark">✳</span><span>Make room for your moment.</span></div>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> <span data-i18n="heroEyebrow">COFFEE · FOOD · EVERYDAY MOMENTS</span></p>
+        <h1><span data-i18n="heroTitle1">Korean favorites.</span><br><em data-i18n="heroTitle2">Coffee breaks.</em></h1>
+        <p class="hero-lede" data-i18n="heroLede">Dari Korean favorites dan hidangan comfort food sampai kopi untuk jeda di tengah hari. Temukan pilihan Loffee yang cocok untuk momenmu.</p>
+        <div class="hero-actions"><a class="button button-dark" href="#menu" data-i18n="heroCta1">Lihat menu</a><a class="text-link" href="#visit" data-i18n="heroCta2">Temukan lokasi</a></div>
       </div>
       <div class="hero-visual">
-        <div class="hero-image-main" role="img" aria-label="Foto suasana kopi"></div>
-        <div class="image-tag"><span class="tag-dot"></span> MENU, MOOD, MOMENT</div>
-        <div class="hero-image-small" role="img" aria-label="Foto kopi di meja"></div>
-        <div class="vertical-label">COFFEE & EATERY — TEBET</div>
+        <div class="hero-frame" aria-hidden="true"></div>
+        <div class="hero-cutout hero-cutout-drink">
+          <img src="images/iced-coffee.svg" alt="" aria-hidden="true" draggable="false" onerror="this.parentElement.classList.add('cutout-fallback')">
+        </div>
+        <div class="hero-cutout hero-cutout-food">
+          <img src="images/gimbap.svg" alt="" aria-hidden="true" draggable="false" onerror="this.parentElement.classList.add('cutout-fallback')">
+        </div>
+        <div class="hero-cutout hero-cutout-support">
+          <img src="images/croffle.svg" alt="" aria-hidden="true" draggable="false" onerror="this.parentElement.classList.add('cutout-fallback')">
+        </div>
+        <div class="hero-shadow hero-shadow-drink" aria-hidden="true"></div>
+        <div class="hero-shadow hero-shadow-food" aria-hidden="true"></div>
+        <div class="vertical-label" data-i18n="heroVertLabel">COFFEE &amp; EATERY — TEBET</div>
       </div>
     </section>
 
-    <section class="marquee" aria-label="Loffee Coffee and Eatery"><div class="marquee-track"><span>KOREAN FAVORITES</span><b>✳</b><span>PASTA & COMFORT FOOD</span><b>✳</b><span>COFFEE & NON-COFFEE</span><b>✳</b><span>KOREAN FAVORITES</span><b>✳</b><span>PASTA & COMFORT FOOD</span><b>✳</b><span>COFFEE & NON-COFFEE</span><b>✳</b></div></section>
+    <section class="marquee" aria-label="Loffee Coffee and Eatery"><div class="marquee-track"><span data-i18n="marquee1">KOREAN FAVORITES</span><b>·</b><span data-i18n="marquee2">PASTA & COMFORT FOOD</span><b>·</b><span data-i18n="marquee3">COFFEE & NON-COFFEE</span><b>·</b><span data-i18n="marquee1">KOREAN FAVORITES</span><b>·</b><span data-i18n="marquee2">PASTA & COMFORT FOOD</span><b>·</b><span data-i18n="marquee3">COFFEE & NON-COFFEE</span><b>·</b></div></section>
+
+    <section class="gallery-section" id="gallery" aria-label="Favorit Pelanggan">
+      <div class="gallery-head">
+        <div>
+          <p class="eyebrow">FROM OUR MENU</p>
+          <h2><span data-i18n="galTitle1">Favorit</span> <em data-i18n="galTitle2">Pelanggan.</em></h2>
+        </div>
+        <div class="gallery-sub-wrap">
+          <p class="gallery-sub" data-i18n="galSub">Pilihan menu untuk menemani momenmu di Loffee.</p>
+          <p class="gallery-demo-note" data-i18n="galDemoNote">Contoh pilihan untuk demo — belum merupakan data popularitas terverifikasi.</p>
+        </div>
+      </div>
+      <div class="gallery-track" id="galleryTrack" tabindex="0" role="region" aria-label="Favorit Pelanggan, geser horizontal"></div>
+      <p class="gallery-hint" aria-hidden="true" data-i18n="galHint">Geser untuk melihat lebih banyak</p>
+    </section>
 
     <section class="menu-section section-wrap" id="menu">
       <div class="section-heading">
-        <div><p class="eyebrow">MADE FOR YOUR MOOD</p><h2>Explore the <em>menu.</em></h2></div>
-        <p class="section-intro">Jelajahi pilihan menu Loffee. Daftar menu akan dimuat dari Google Sheets setelah API dikonfigurasi.</p>
+        <div><p class="eyebrow">MADE FOR YOUR MOOD</p><h2><span data-i18n="menuTitle1">Explore the</span> <em data-i18n="menuTitle2">menu.</em></h2></div>
+        <p class="section-intro" data-i18n="menuIntro">Jelajahi pilihan menu Loffee. Daftar menu dimuat langsung dari Google Sheets.</p>
       </div>
       <div class="menu-tools">
-        <label class="search-box"><span>⌕</span><input id="menuSearch" type="search" placeholder="Cari menu..." aria-label="Cari menu"></label>
-        <div class="category-filters" id="categoryFilters"><button class="filter active" data-category="Semua">Semua menu</button></div>
+        <label class="search-box"><span class="search-glass" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+        </span><input id="menuSearch" type="search" data-i18n-ph="searchPlaceholder" placeholder="Cari menu..." aria-label="Cari menu">
+        <button class="search-clear" id="searchClear" type="button" aria-label="Hapus kata kunci" hidden>
+          <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button></label>
+        <div class="category-filters" id="categoryFilters"><button class="filter active" data-category="Semua" data-i18n="catAll">Semua kategori</button></div>
+      </div>
+      <div class="cat-all-toggle-wrap" style="display:none">
+        <button class="cat-all-toggle" id="catAllToggle" type="button" aria-haspopup="dialog" aria-expanded="false" data-i18n="catSeeAll">Lihat semua kategori</button>
+      </div>
+      <div class="cat-sheet-backdrop" id="catSheetBackdrop" hidden>
+        <div class="cat-sheet" role="dialog" aria-modal="true" aria-label="Daftar kategori">
+          <button class="cat-sheet-close" id="catSheetClose" type="button" aria-label="Tutup">×</button>
+          <h3 data-i18n="catSheetTitle">Semua kategori</h3>
+          <div class="category-filters" id="categoryFiltersSheet"></div>
+        </div>
       </div>
       <div class="menu-status" id="menuStatus" role="status">Menghubungkan menu…</div>
       <div class="menu-grid" id="menuGrid"></div>
@@ -76,16 +121,60 @@
 
     <section class="story-section" id="story">
       <div class="story-image" role="img" aria-label="Suasana coffee shop"></div>
-      <div class="story-copy"><p class="eyebrow">A SPACE TO SLOW DOWN</p><h2>From Korean plates<br><em>to coffee breaks.</em></h2><p>Mulai dari Gimbap Signature dan Korean Signature, sampai pasta, hidangan Indonesia, kopi, dan minuman non-kopi. Jelajahi pilihan menu sebelum berkunjung.</p><p class="story-small">Teks ini merupakan copy konsep dan dapat disesuaikan dengan cerita resmi Loffee.</p><a class="text-link" href="#visit">Rencanakan kunjungan <span>↗</span></a></div>
+      <div class="story-copy"><p class="eyebrow">A SPACE TO SLOW DOWN</p><h2><span data-i18n="storyTitle1">From Korean plates</span><br><em data-i18n="storyTitle2">to coffee breaks.</em></h2><p data-i18n="storyBody">Mulai dari Gimbap Signature dan Korean Signature, sampai pasta, hidangan Indonesia, kopi, dan minuman non-kopi. Jelajahi pilihan menu sebelum berkunjung.</p><p class="story-small" data-i18n="storySmall">Teks ini merupakan copy konsep dan dapat disesuaikan dengan cerita resmi Loffee.</p><a class="text-link" href="#visit" data-i18n="storyCta">Rencanakan kunjungan</a></div>
     </section>
 
     <section class="visit-section section-wrap" id="visit">
-      <div class="visit-copy"><p class="eyebrow">COME SAY HELLO</p><h2>Plan your<br><em>Loffee stop.</em></h2><p class="visit-lede">Temukan lokasi Loffee Coffee & Eatery di Tebet melalui Google Maps.</p><a class="button button-dark" href="https://www.google.com/maps/place/Loffee+Coffee+%26+Eatery/@-6.2396851,106.8538154,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3247a06f5fb:0x3687dfc5c814ee6d!8m2!3d-6.2396851!4d106.8563903!16s%2Fg%2F11s4wdyyw6" target="_blank" rel="noopener noreferrer">Buka Google Maps <span>↗</span></a><p class="contact-placeholder">Jam operasional, nomor kontak, dan tautan reservasi ditambahkan setelah dikonfirmasi.</p></div>
-      <a class="map-card" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/Loffee+Coffee+%26+Eatery/@-6.2396851,106.8538154,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3247a06f5fb:0x3687dfc5c814ee6d!8m2!3d-6.2396851!4d106.8563903!16s%2Fg%2F11s4wdyyw6">
-        <div class="map-preview"></div><div class="map-card-label"><span><small>FIND US</small><strong>Loffee Coffee & Eatery</strong><small>Tebet · Jakarta Selatan</small></span><b>↗</b></div>
-      </a>
+      <div class="visit-copy">
+        <p class="eyebrow" data-i18n="visitEyebrow">COME SAY HELLO</p>
+        <h2><span data-i18n="visitTitle1">Plan your</span><br><em data-i18n="visitTitle2">Loffee stop.</em></h2>
+        <p class="visit-lede" data-i18n="visitLede">Temukan lokasi Loffee Coffee &amp; Eatery di Tebet melalui Google Maps.</p>
+        <div class="visit-info">
+          <div class="visit-info-row"><small data-i18n="visitName">NAMA</small><strong>Loffee Coffee &amp; Eatery</strong></div>
+          <div class="visit-info-row"><small data-i18n="visitAddress">ALAMAT</small><strong data-i18n="ftAddress">Tebet, Jakarta Selatan</strong></div>
+          <div class="visit-info-row"><small data-i18n="visitHours">JAM OPERASIONAL</small><strong data-i18n="visitHoursVal">Akan dikonfirmasi pihak Loffee</strong></div>
+        </div>
+        <a class="button button-dark" href="https://www.google.com/maps/place/Loffee+Coffee+%26+Eatery/@-6.2396851,106.8538154,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3247a06f5fb:0x3687dfc5c814ee6d!8m2!3d-6.2396851!4d106.8563903!16s%2Fg%2F11s4wdyyw6" target="_blank" rel="noopener noreferrer" data-i18n="visitMapsBtn">Buka Google Maps</a>
+        <p class="contact-placeholder" data-i18n="visitContactNote">Nomor kontak ditambahkan setelah dikonfirmasi.</p>
+      </div>
+      <div class="visit-map">
+        <iframe title="Peta lokasi Loffee Coffee &amp; Eatery" src="https://maps.google.com/maps?q=Loffee%20Coffee%20%26%20Eatery%20Tebet&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
     </section>
-  </main>
+
+    <section class="review-preview section-wrap" id="reviewPreview" aria-label="Preview review pelanggan">
+      <div class="section-heading review-preview-head">
+        <div><p class="eyebrow" data-i18n="rvwEyebrow">FROM OUR GUESTS</p><h2><span data-i18n="rvwTitle1">Apa kata</span> <em data-i18n="rvwTitle2">pelanggan.</em></h2></div>
+        <a class="text-link" href="reviews.html" data-i18n="rvwCta">Lihat semua review</a>
+      </div>
+      <div class="review-preview-banner" data-i18n="rvwBanner">Contoh ulasan — <strong>DEMO</strong>. Ulasan asli pelanggan akan menggantikan konten ini setelah disetujui.</div>
+      <div class="review-preview-grid" id="reviewPreviewGrid"></div>
+    </section>
+
+    <section class="reserve-section section-wrap" id="reserve">
+      <div class="reserve-card">
+        <div class="reserve-copy">
+          <p class="eyebrow" data-i18n="rsvEyebrow">BOOK A TABLE</p>
+          <h2><span data-i18n="rsvTitle1">Reservasi</span> <em data-i18n="rsvTitle2">meja.</em></h2>
+          <p class="reserve-lede" data-i18n="rsvLede">Isi detail kunjunganmu, lalu kirim ringkasannya melalui WhatsApp. Tim Loffee akan mengonfirmasi ketersediaan meja secara langsung.</p>
+        </div>
+        <form class="reserve-form" id="reserveForm" novalidate>
+          <div class="reserve-fields">
+            <label><span data-i18n="rsvName">Nama</span><input id="rsvName" type="text" autocomplete="name" required></label>
+            <label><span data-i18n="rsvPhone">Nomor WhatsApp</span><input id="rsvPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" required></label>
+            <label><span data-i18n="rsvBranch">Cabang</span><select id="rsvBranch" required><option value="Tebet">Loffee Tebet</option><option value="Gandaria" disabled>Gandaria (menunggu konfirmasi)</option><option value="Blok M" disabled>Blok M (menunggu konfirmasi)</option><option value="One Belpark" disabled>One Belpark Mall (menunggu konfirmasi)</option></select></label>
+            <label><span data-i18n="rsvRoom">Ruangan (opsional, Tebet)</span><select id="rsvRoom"><option value="">—</option><option>Outdoor lantai 2 (25 pax)</option><option>Indoor lantai 1 (50 pax)</option><option>VIP A lantai 2 (15 pax)</option><option>VIP B lantai 2 (10 pax)</option><option>Outdoor lantai 3 (15 pax)</option><option>Ruang Karaoke lantai 3 (15 pax)</option><option>Ruang Meeting lantai 3 (20 pax)</option><option>Ruang Meeting lantai 2 (10 pax)</option></select></label>
+            <label><span data-i18n="rsvDate">Tanggal kunjungan</span><input id="rsvDate" type="date" required></label>
+            <label><span data-i18n="rsvTime">Jam kunjungan</span><input id="rsvTime" type="time" required></label>
+            <label><span data-i18n="rsvGuests">Jumlah tamu</span><input id="rsvGuests" type="number" min="1" max="30" value="2" required></label>
+            <label><span data-i18n="rsvNote">Catatan (opsional)</span><input id="rsvNote" type="text" data-i18n-ph="rsvNotePh" placeholder="Contoh: kursi bayi, area outdoor"></label>
+          </div>
+          <p class="reserve-error" id="reserveError" role="alert" hidden></p>
+          <button class="button button-dark reserve-submit" id="reserveSubmit" type="submit" data-i18n="rsvSubmit">Kirim via WhatsApp</button>
+          <p class="reserve-note" data-i18n="rsvNote2">Pengiriman via WhatsApp belum berarti reservasi terkonfirmasi — tim Loffee akan mengonfirmasi jadwal secara langsung.</p>
+        </form>
+      </div>
+    </section>
 
   <div class="menu-modal-backdrop" id="menuModalBackdrop" hidden>
     <div class="menu-modal" role="dialog" aria-modal="true" aria-labelledby="menuModalTitle">
@@ -115,24 +204,68 @@
       <button class="cart-close" id="cartClose" type="button" aria-label="Tutup keranjang">×</button>
     </div>
     <div class="cart-items" id="cartItems"></div>
-    <div class="cart-empty" id="cartEmpty"><span>✳</span><p>Keranjang masih kosong.<br>Tambahkan menu favoritmu dari daftar menu.</p></div>
+    <div class="cart-empty" id="cartEmpty"><span aria-hidden="true">·</span><p>Keranjang masih kosong.<br>Tambahkan menu favoritmu dari daftar menu.</p></div>
     <div class="cart-footer" id="cartFooter">
       <div class="cart-total-row"><span>Total</span><strong id="cartTotal">Rp 0</strong></div>
       <div class="cart-pay-options">
         <button class="cart-pay-btn wa" id="cartCheckoutWA" type="button">Pesan via WhatsApp</button>
-        <button class="cart-pay-btn kasir" id="cartCheckoutKasir" type="button">Bayar di kasir</button>
       </div>
-      <p class="cart-note">Pesanan dikonfirmasi oleh tim Loffee. Pembayaran dapat dilakukan via WhatsApp atau langsung di kasir saat kunjungan.</p>
+      <p class="cart-note">Pesanan dikonfirmasi oleh tim Loffee melalui WhatsApp. Pembayaran diatur lebih lanjut di chat.</p>
     </div>
   </aside>
 
   <div class="cart-toast" id="cartToast" role="status" aria-live="polite" hidden></div>
 
+  <section class="pre-footer-band" aria-label="Ajakan menuju menu dan reservasi">
+    <div>
+      <p data-i18n="bandText">Make room for your moment — jelajahi menu atau amankan mejamu.</p>
+      <div class="band-actions">
+        <a class="button button-dark" href="#menu" data-i18n="heroCta1">Lihat menu</a>
+        <a class="button button-dark" href="#reserve" data-i18n="ftReserve">Reservasi</a>
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
-    <div class="footer-top"><div><a class="wordmark footer-wordmark" href="#home">Loffee<span>.</span></a><p>Coffee, food & good company.</p></div><div class="footer-links"><div><small>EXPLORE</small><a href="#home">Beranda</a><a href="#menu">Menu</a><a href="#story">Tentang</a></div><div><small>VISIT</small><a href="#visit">Lokasi</a><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/Loffee+Coffee+%26+Eatery/@-6.2396851,106.8538154,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3247a06f5fb:0x3687dfc5c814ee6d!8m2!3d-6.2396851!4d106.8563903!16s%2Fg%2F11s4wdyyw6">Google Maps ↗</a></div></div></div>
-    <div class="footer-bottom"><span>© <span id="year"></span> Loffee Coffee & Eatery · Concept website by PortoWeb.id</span><a href="#home">Back to top ↑</a></div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="wordmark footer-wordmark" href="#home">Loffee<span>.</span></a>
+        <p data-i18n="ftBrandDesc">Coffee, food &amp; good company. Ruang hangat untuk menikmati hidangan Korea favorit dan jeda kopi di Tebet.</p>
+        <div class="footer-social">
+          <a href="#" class="soc" aria-label="WhatsApp (tautan belum tersedia)" title="WhatsApp — tautan belum tersedia"><img src="images/whatsapp.svg" alt="" width="20" height="20" onerror="this.parentElement.classList.add('soc-missing')"></a>
+          <a href="#" class="soc" aria-label="Instagram (tautan belum tersedia)" title="Instagram — tautan belum tersedia"><img src="images/instagram.svg" alt="" width="20" height="20" onerror="this.parentElement.classList.add('soc-missing')"></a>
+        </div>
+        <div class="halal-info">
+          <img src="assets/loffee_image_007_p01.png" alt="Logo Halal Indonesia" width="52" height="52" loading="lazy" onerror="this.parentElement.classList.add('halal-missing')">
+          <p data-i18n="halalNote">Logo halal ditampilkan menunggu verifikasi sertifikasi resmi dari pihak Loffee.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div><small data-i18n="ftExplore">EXPLORE</small><a href="#home" data-i18n="ftHome">Beranda</a><a href="#menu" data-i18n="ftMenu">Menu</a><a href="#story" data-i18n="ftAbout">Tentang</a><a href="reviews.html" data-i18n="ftReview">Review</a><a href="#visit" data-i18n="ftLocation">Lokasi</a></div>
+        <div><small data-i18n="ftOrder">PESAN &amp; RESERVASI</small>
+          <a class="order-link" data-platform="gofood" href="https://example.com/demo-gofood" target="_blank" rel="noopener noreferrer" title="Tautan demo — ganti dengan URL resmi di config.js"><img src="images/gofood.svg" alt="" width="18" height="18" onerror="this.parentElement.classList.add('soc-missing')"><span>GoFood</span><small data-i18n="ftDemo">demo</small></a>
+          <a class="order-link" data-platform="grabfood" href="https://example.com/demo-grabfood" target="_blank" rel="noopener noreferrer" title="Tautan demo — ganti dengan URL resmi di config.js"><img src="images/grabfood.svg" alt="" width="18" height="18" onerror="this.parentElement.classList.add('soc-missing')"><span>GrabFood</span><small data-i18n="ftDemo">demo</small></a>
+          <a class="order-link" data-platform="shopeefood" href="https://example.com/demo-shopeefood" target="_blank" rel="noopener noreferrer" title="Tautan demo — ganti dengan URL resmi di config.js"><img src="images/shopeefood.svg" alt="" width="18" height="18" onerror="this.parentElement.classList.add('soc-missing')"><span>ShopeeFood</span><small data-i18n="ftDemo">demo</small></a>
+          <a href="#reserve" data-i18n="ftReserve">Reservasi</a>
+        </div>
+        <div><small data-i18n="ftVisit">KUNJUNGI KAMI</small>
+          <strong>Loffee Coffee &amp; Eatery</strong>
+          <span data-i18n="ftAddress">Tebet, Jakarta Selatan</span>
+          <span data-i18n="ftHours">Jam operasional akan dikonfirmasi</span>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/Loffee+Coffee+%26+Eatery/@-6.2396851,106.8538154,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3247a06f5fb:0x3687dfc5c814ee6d!8m2!3d-6.2396851!4d106.8563903!16s%2Fg%2F11s4wdyyw6" data-i18n="ftMaps">Google Maps</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Loffee Coffee &amp; Eatery</span><a href="#home" data-i18n="ftBackTop">Back to top</a></div>
+    <div class="footer-credit">Crafted by <a href="https://wa.me/6282195670441?text=Halo%20PortoWeb.id%2C%20saya%20tertarik%20membuat%20website%20untuk%20bisnis%20saya.%20Boleh%20minta%20informasi%20layanan%20dan%20harganya%3F" target="_blank" rel="noopener noreferrer">PortoWeb.id</a>
+      <a class="credit-ig" href="https://www.instagram.com/portoweb.id/" target="_blank" rel="noopener noreferrer" aria-label="Instagram PortoWeb.id"><img src="images/instagram.svg" alt="" width="14" height="14" onerror="this.parentElement.classList.add('ig-missing')"></a>
+    </div>
   </footer>
   <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="reviews-data.js"></script>
+  <script src="reviews-ui.js"></script>
+  <script src="lang-reserve.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
